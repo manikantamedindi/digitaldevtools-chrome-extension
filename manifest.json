@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Digital Dev Tools",
+  "version": "1.0",
+  "description": "Open Digital Dev Tools with the current URL",
+  "action": {
+    "default_title": "Open Digital Dev Tools"
+  },
+  "permissions": ["tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "/icon.png",
+    "32": "/icon.png",
+    "48": "/icon.png",
+    "128": "/icon.png"
+  }
+}
