@@ -1,19 +1,25 @@
 {
   "manifest_version": 3,
   "name": "Digital Dev Tools",
-  "version": "1.0",
-  "description": "Open Digital Dev Tools with the current URL",
+  "version": "1.0.0",
+  "description": "Add and manage your favorite web development tools",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["https://*/*", "http://*/*"],
   "action": {
-    "default_title": "Open Digital Dev Tools"
+    "default_popup": "popup.html",
+    "default_title": "Digital Dev Tools"
   },
-  "permissions": ["tabs"],
-  "background": {
-    "service_worker": "background.js"
-  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
   "icons": {
-    "16": "/icon.png",
-    "32": "/icon.png",
-    "48": "/icon.png",
-    "128": "/icon.png"
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   }
 }

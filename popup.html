@@ -3,23 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Extension</title>
-    <script src="popup.js" defer></script>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        width: 200px;
-        text-align: center;
-        padding: 10px;
-      }
-      button {
-        padding: 5px 10px;
-        cursor: pointer;
-      }
-    </style>
+    <title>Add New Web Tool</title>
+    <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <h2>My Extension</h2>
-    <button id="clickMe">Click Me</button>
+    <div class="container">
+      <div class="header">
+        <h1>Add New Web Tool</h1>
+        <button class="close-btn" id="closeBtn">×</button>
+      </div>
+
+      <form id="toolForm" class="form">
+        <div class="form-group">
+          <input
+            type="url"
+            id="urlInput"
+            placeholder="https://example.com"
+            required
+            class="url-input"
+          />
+          <p class="help-text">Enter the complete URL including https://</p>
+        </div>
+
+        <!-- Add this right after the URL input form-group and before the Category section -->
+        <div class="preview-section" id="previewSection" style="display: none">
+          <h3>Preview</h3>
+          <div class="preview-content">
+            <div class="preview-icon">
+              <img
+                id="previewFavicon"
+                src="/icons/icon16.png"
+                alt="Site icon"
+                onerror="this.style.display='none'"
+              />
+            </div>
+            <div class="preview-text">
+              <h4 id="previewTitle">Loading...</h4>
+              <p id="previewDescription">Fetching page information...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="categorySelect">Category</label>
+          <div class="select-wrapper">
+            <select id="categorySelect" required>
+              <option value="">Select Category</option>
+              <option value="Javascript Notes">Javascript Notes</option>
+              <option value="CSS Tools">CSS Tools</option>
+              <option value="React Resources">React Resources</option>
+              <option value="Node.js Tools">Node.js Tools</option>
+              <option value="Design Tools">Design Tools</option>
+              <option value="Testing Tools">Testing Tools</option>
+              <option value="DevOps Tools">DevOps Tools</option>
+              <option value="Learning Resources">Learning Resources</option>
+            </select>
+            <button type="button" class="add-category-btn" id="addCategoryBtn">
+              +
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tagsInput">Tags</label>
+          <div class="tags-container">
+            <div class="tags-list" id="tagsList"></div>
+            <input
+              type="text"
+              id="tagsInput"
+              placeholder="Type to add tags..."
+              class="tags-input"
+            />
+          </div>
+          <p class="help-text">
+            Press Enter to add a tag or select from suggestions
+          </p>
+        </div>
+
+        <div class="form-group">
+          <div class="priority-container">
+            <span class="priority-label">Priority</span>
+            <div class="toggle-container">
+              <input type="checkbox" id="priorityToggle" class="toggle-input" />
+              <label for="priorityToggle" class="toggle-label">
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="priority-value" id="priorityValue">Low</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="btn-text">Submit Tool</span>
+          <span class="loading-spinner" id="loadingSpinner"></span>
+        </button>
+      </form>
+
+      <div class="success-message" id="successMessage">
+        <p>✅ Tool added successfully!</p>
+      </div>
+
+      <div class="error-message" id="errorMessage">
+        <p id="errorText">❌ Failed to add tool. Please try again.</p>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
   </body>
 </html>
